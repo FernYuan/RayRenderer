@@ -1,1 +1,9 @@
 D:\work\RayRenderer\RayRenderer\bin\Debug\RayRenderer.exe.config
+D:\work\RayRenderer\RayRenderer\bin\Debug\RayRenderer.exe
+D:\work\RayRenderer\RayRenderer\bin\Debug\RayRenderer.pdb
+D:\work\RayRenderer\RayRenderer\obj\Debug\RayRenderer.csprojResolveAssemblyReference.cache
+D:\work\RayRenderer\RayRenderer\obj\Debug\RayRenderer.Form1.resources
+D:\work\RayRenderer\RayRenderer\obj\Debug\RayRenderer.Properties.Resources.resources
+D:\work\RayRenderer\RayRenderer\obj\Debug\RayRenderer.csproj.GenerateResource.Cache
+D:\work\RayRenderer\RayRenderer\obj\Debug\RayRenderer.exe
+D:\work\RayRenderer\RayRenderer\obj\Debug\RayRenderer.pdb

@@ -49,15 +49,28 @@ namespace RayRenderer
         /// <summary>
         /// 向量单位化(使向量的模长为1)
         /// </summary>
-        public void Normalize()
+        public static Vector3 Normalize(Vector3 mVec)
         {
-            float length = this.Length;
-            float inv = 1 / length;
-            x *= inv;
-            y *= inv;
-            z *= inv;
+            float length = mVec.Length;
 
-            
+            if (length > 0)
+            {
+                float inv = 1 / length;
+                mVec.x *= inv;
+                mVec.y *= inv;
+                mVec.z *= inv;
+                return mVec;
+            }
+
+            return zero;
+        }
+
+        /// <summary>
+        /// 向量单位化(使向量的模长为1)
+        /// </summary>
+        public Vector3 Normalize()
+        {
+            return Normalize(this);
         }
 
         public static Vector3 operator +(Vector3 mA,Vector3 mB)
@@ -94,6 +107,28 @@ namespace RayRenderer
         {
             float inv = 1 / mF;
             return mA * inv;
+        }
+
+        /// <summary>
+        /// 向量点积
+        /// </summary>
+        /// <param name="mA"></param>
+        /// <param name="mB"></param>
+        /// <returns></returns>
+        public static float Dot(Vector3 mA, Vector3 mB)
+        {
+            return (mA.x * mB.x) + (mA.y * mB.y) + (mA.z * mB.z);
+        }
+
+        /// <summary>
+        /// 向量叉积
+        /// </summary>
+        /// <param name="mA"></param>
+        /// <param name="mB"></param>
+        /// <returns></returns>
+        public static Vector3 Cross(Vector3 mA, Vector3 mB)
+        {
+            return new Vector3((mA.y * mB.z - mA.z * mB.y), (mA.z * mB.x - mA.x * mB.z), (mA.x * mB.y - mA.y * mB.x));
         }
 
 
