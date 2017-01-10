@@ -50,6 +50,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Camera.cs" />
+    <Compile Include="Color.cs" />
     <Compile Include="Form1.cs">
       <SubType>Form</SubType>
     </Compile>
