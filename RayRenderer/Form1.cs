@@ -102,5 +102,18 @@ namespace RayRenderer
         {
             rayRenderer.sphere.Radius = (float)bar.Value;
         }
+
+        private void barLight_Scroll(object sender, EventArgs e)
+        {
+            PhongMaterial.light.direction = new Vector3(barLight.Value, 1, 1).Normalize();
+        }
+
+        private void btnColor_Click(object sender, EventArgs e)
+        {
+            if (colorDialog.ShowDialog() == DialogResult.OK)
+            {
+                PhongMaterial.light.color = new Color(255f / (float)colorDialog.Color.R, 255f / (float)colorDialog.Color.G, 255f / (float)colorDialog.Color.B);
+            }
+        }
     }
 }

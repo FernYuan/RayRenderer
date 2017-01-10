@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 namespace RayRenderer
 {
     /// <summary>
-    /// 颜色类
+    /// 颜色
     /// </summary>
     public struct Color
     {
@@ -17,7 +17,7 @@ namespace RayRenderer
         public float a;
 
 
-        public Color(float mR,float mG,float mB)
+        public Color(float mR, float mG, float mB)
         {
             r = mR;
             g = mG;
@@ -25,7 +25,7 @@ namespace RayRenderer
             a = 1f;
         }
 
-        public Color(float mR, float mG, float mB,float mA)
+        public Color(float mR, float mG, float mB, float mA)
         {
             r = mR;
             g = mG;
@@ -38,5 +38,62 @@ namespace RayRenderer
             return new Color(mA.r + mB.r, mA.g + mB.g, mA.b + mB.b, mA.a + mB.a);
         }
 
+        public static Color operator *(Color mA, Color mB)
+        {
+            return new Color(mA.r * mB.r, mA.g * mB.g, mA.b * mB.b, mA.a * mB.a);
+        }
+
+        public static Color operator *(Color mColor, float mF)
+        {
+            return new Color(mColor.r * mF, mColor.g * mF, mColor.b * mF, mColor.a * mF);
+        }
+
+        public static Color operator *(float mF, Color mColor)
+        {
+            return new Color(mColor.r * mF, mColor.g * mF, mColor.b * mF, mColor.a * mF);
+        }
+
+        public static Color black
+        {
+            get
+            {
+                return new Color(0f, 0f, 0f);
+            }
+        }
+
+
+        public static Color white
+        {
+            get
+            {
+                return new Color(1, 1, 1);
+            }
+        }
+
+        public static Color red
+        {
+            get
+            {
+              return  new Color(1, 0, 0);
+            }
+        }
+        
+
+        public static Color green
+        {
+            get
+            {
+                return new Color(0, 1, 0);
+            }
+        }
+        
+
+        public static Color blue
+        {
+            get
+            {
+                return new Color(0, 0, 1);
+            }
+        }
     }
 }

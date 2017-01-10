@@ -49,6 +49,9 @@ namespace RayRenderer
             this.fov = mFov;
         }
 
+        /// <summary>
+        /// 初始化
+        /// </summary>
         public void Initialize()
         {
             this.right = Vector3.Cross(this.front,this.refUp);
@@ -56,6 +59,12 @@ namespace RayRenderer
             this.fovScale = (float)Math.Tan(this.fov * 0.5f * Math.PI / 180f) * 2f;
         }
 
+        /// <summary>
+        /// 发射光线
+        /// </summary>
+        /// <param name="x"></param>
+        /// <param name="y"></param>
+        /// <returns></returns>
         public Ray3 GenerateRay(float x, float y)
         {
             Vector3 r = right * (float)((x - 0.5f) * fovScale);

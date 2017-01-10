@@ -96,7 +96,7 @@ namespace RayRenderer
 
         public static Vector3 operator *(float mF, Vector3 mA)
         {
-            return mA * mF;
+            return new Vector3(mA.x * mF, mA.y * mF, mA.z * mF);
         }
 
         public static Vector3 operator /(Vector3 mA, float mF)

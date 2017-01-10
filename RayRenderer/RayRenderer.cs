@@ -34,7 +34,7 @@ namespace RayRenderer
 
         public Sphere sphere = new Sphere(10);
 
-        public RayRenderer(Camera mCamera,Bitmap mBitmap,Graphics mGraphics,int mMaxDepth)
+        public RayRenderer(Camera mCamera, Bitmap mBitmap, Graphics mGraphics, int mMaxDepth)
         {
             this.camera = mCamera;
             camera.Initialize();
@@ -43,6 +43,8 @@ namespace RayRenderer
             this.maxDepth = mMaxDepth;
 
             sphere.Transform.position = new Vector3(0, 10, -10);
+            sphere.RayMaterial = new PhongMaterial(Color.blue, Color.white, 16, 0);
+           // sphere.RayMaterial = new CheckerMaterial(0.2f, 0.5f);
         }
 
         /// <summary>
@@ -50,8 +52,8 @@ namespace RayRenderer
         /// </summary>
         public void Rendering()
         {
-            
-            
+
+
 
             int w = bitBuffer.Width;
             int h = bitBuffer.Height;
@@ -68,7 +70,8 @@ namespace RayRenderer
                         //Console.WriteLine("----射线命中"+hit.Position);
 
                         //RenderDepth(hit,x,y);
-                        RenderNormal(hit, x, y);
+                        //RenderNormal(hit, x, y);
+                        RayTrace(ray, hit, x, y);
                     }
                     else
                     {
@@ -87,7 +90,7 @@ namespace RayRenderer
         /// <summary>
         /// 渲染深度
         /// </summary>
-        public void RenderDepth(RaycastHit hit,int x,int y)
+        public void RenderDepth(RaycastHit hit, int x, int y)
         {
             float depth = 255f - Math.Min((hit.Distance / maxDepth) * 255f, 255f);
             int depthInt = (int)depth;
@@ -107,6 +110,21 @@ namespace RayRenderer
                 Mathf.Clamp((int)((hit.Normal.y + 1f) * 128f), 0, 255),
                 Mathf.Clamp((int)((hit.Normal.z + 1f) * 128f), 0, 255)));
         }
-        
+
+        /// <summary>
+        /// 光线追踪
+        /// </summary>
+        /// <param name="hit"></param>
+        /// <param name="x"></param>
+        /// <param name="y"></param>
+        public void RayTrace(Ray3 ray, RaycastHit hit, int x, int y)
+        {
+            Color color = hit.GameObject.RayMaterial.Sample(ray, hit.Position, hit.Normal);
+            bitBuffer.SetPixel(x, y, System.Drawing.Color.FromArgb(255,
+                Mathf.Clamp((int)(color.r * 255), 0, 255),
+                Mathf.Clamp((int)(color.g * 255), 0, 255),
+                Mathf.Clamp((int)(color.b * 255), 0, 255)));
+        }
+
     }
 }

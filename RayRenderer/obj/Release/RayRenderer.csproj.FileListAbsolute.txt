@@ -7,3 +7,12 @@ D:\work\RayRenderer\RayRenderer\obj\Release\RayRenderer.csproj.GenerateResource.
 D:\work\RayRenderer\RayRenderer\obj\Release\RayRenderer.exe
 D:\work\RayRenderer\RayRenderer\obj\Release\RayRenderer.pdb
 D:\work\RayRenderer\RayRenderer\obj\Release\RayRenderer.csprojResolveAssemblyReference.cache
+F:\Work\Project\C#\Renderer\RayRenderer\RayRenderer\bin\Release\RayRenderer.exe.config
+F:\Work\Project\C#\Renderer\RayRenderer\RayRenderer\obj\Release\RayRenderer.exe
+F:\Work\Project\C#\Renderer\RayRenderer\RayRenderer\obj\Release\RayRenderer.pdb
+F:\Work\Project\C#\Renderer\RayRenderer\RayRenderer\bin\Release\RayRenderer.exe
+F:\Work\Project\C#\Renderer\RayRenderer\RayRenderer\bin\Release\RayRenderer.pdb
+F:\Work\Project\C#\Renderer\RayRenderer\RayRenderer\obj\Release\RayRenderer.csprojResolveAssemblyReference.cache
+F:\Work\Project\C#\Renderer\RayRenderer\RayRenderer\obj\Release\RayRenderer.Form1.resources
+F:\Work\Project\C#\Renderer\RayRenderer\RayRenderer\obj\Release\RayRenderer.Properties.Resources.resources
+F:\Work\Project\C#\Renderer\RayRenderer\RayRenderer\obj\Release\RayRenderer.csproj.GenerateResource.Cache
