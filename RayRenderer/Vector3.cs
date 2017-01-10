@@ -42,7 +42,7 @@ namespace RayRenderer
         {
             get
             {
-                return (float)(x * x + y * y + z * z);
+                return (x * x + y * y + z * z);
             }
         }
 
@@ -55,7 +55,7 @@ namespace RayRenderer
 
             if (length > 0)
             {
-                float inv = 1 / length;
+                float inv = 1f / length;
                 mVec.x *= inv;
                 mVec.y *= inv;
                 mVec.z *= inv;
@@ -75,12 +75,12 @@ namespace RayRenderer
 
         public static Vector3 operator +(Vector3 mA,Vector3 mB)
         {
-            return new Vector3(mA.x + mB.x, mA.y + mB.x, mB.z + mB.z);
+            return new Vector3(mA.x + mB.x, mA.y + mB.y, mA.z + mB.z);
         }
 
         public static Vector3 operator -(Vector3 mA, Vector3 mB)
         {
-            return new Vector3(mA.x - mB.x, mA.y - mB.x, mB.z - mB.z);
+            return new Vector3(mA.x - mB.x, mA.y - mB.y, mA.z - mB.z);
         }
 
         public static Vector3 operator -(Vector3 mA)
@@ -88,10 +88,6 @@ namespace RayRenderer
             return new Vector3(-mA.x, -mA.y, -mA.z);
         }
 
-        public static Vector3 operator *(Vector3 mA, Vector3 mB)
-        {
-            return new Vector3(mA.x - mB.x, mA.y - mB.x, mB.z - mB.z);
-        }
 
         public static Vector3 operator *(Vector3 mA, float mF)
         {
@@ -105,7 +101,7 @@ namespace RayRenderer
 
         public static Vector3 operator /(Vector3 mA, float mF)
         {
-            float inv = 1 / mF;
+            float inv = 1f / mF;
             return mA * inv;
         }
 
@@ -141,6 +137,11 @@ namespace RayRenderer
             {
                 return new Vector3(0, 0, 0);
             }
+        }
+
+        public override string ToString()
+        {
+            return string.Format("Vector({0},{1},{2})", x, y, z);
         }
 
     }

@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
+using System.Diagnostics;
 using System.Drawing;
 using System.Linq;
 using System.Text;
@@ -12,12 +13,10 @@ namespace RayRenderer
 {
     public partial class Form1 : Form
     {
-        Graphics g;
-
         /// <summary>
-        /// 帧缓冲
+        /// 光线追踪渲染器
         /// </summary>
-        Bitmap bitBuffer;
+        private RayRenderer rayRenderer;
 
         public Form1()
         {
@@ -25,71 +24,83 @@ namespace RayRenderer
 
         }
 
+
+        System.Timers.Timer timer;
         private void Form1_Load(object sender, EventArgs e)
         {
-            g = this.CreateGraphics();
-            bitBuffer = new Bitmap(256, 256);
+
+            rayRenderer = new RayRenderer(new Camera(new Vector3(0, 10, 10), new Vector3(0, 0, -1), new Vector3(0, 1, 0), 90),
+           new Bitmap(256, 256), this.pic.CreateGraphics(), 20);
+            timer = new System.Timers.Timer();
             timer.Enabled = true;
-            timer.Interval = 1000 / 1;
-            timer.Tick += Timer_Tick;
+            timer.Interval = 1000 / 60;
+            timer.AutoReset = true;
+            timer.Elapsed += Timer_Elapsed;
             timer.Start();
 
-            
+
         }
 
+        private void OnFPSChange(float mFPS)
+        {
+            this.lblFPS.Text = mFPS.ToString();
+        }
+
+        private object isLock = new object();
+
+        private void Timer_Elapsed(object sender, System.Timers.ElapsedEventArgs e)
+        {
+            lock (isLock)
+            {
+                Draw();
+            }
+        }
+
+        /// <summary>
+        /// 计时器
+        /// </summary>
+        private Stopwatch sw = new Stopwatch();
         /// <summary>
         /// 绘制
         /// </summary>
         public void Draw()
         {
-            g.Clear(Color.Black);
 
-            Sphere sphere = new RayRenderer.Sphere(10);
-            sphere.Transform.position = new RayRenderer.Vector3(0, 10, -10);
-            Camera camera = new RayRenderer.Camera(new Vector3(0, 10, 10), new Vector3(0, 0, -1), new Vector3(0, 1, 0), 90);
+            sw.Restart();
 
-            int w = bitBuffer.Width;
-            int h = bitBuffer.Height;
+            rayRenderer.Rendering();
 
-            for (int y = 0; y < h; y++)
+
+            sw.Stop();
+
+
+
+
+            int fps = (int)(60f / (sw.ElapsedMilliseconds / (1000f / 60f)));
+
+            Action<int> action = new Action<int>((num) => { lblFPS.Text = num.ToString(); });
+
+            if (this.lblFPS.Disposing || this.lblFPS.IsDisposed)
             {
-                float sy = 1f - (float)y / (float)h;
-                for (int x = 0; x < w; x++)
-                {
-                    float sx = (float)x / (float)w;
-                    Ray3 ray = camera.GenerateRay(sx, sy);
-                    RaycastHit hit = sphere.Intersect(ray);
-                    if (hit.GameObject != null)
-                    {
-                        float depth = 255 - Math.Min((hit.Distance / 20) * 255, 255);
-                        int depthInt = (int)depth;
-                        bitBuffer.SetPixel(x, y, Color.FromArgb(255, depthInt, depthInt, depthInt));
-                    }
-
-                   // bitBuffer.SetPixel(x, y, Color.FromArgb(255, (int)(((float)x / (float)w )* 255), (int)(((float)y / (float)h) * 255), 255));
-                }
+                return;
             }
 
-
-            g.DrawImage(bitBuffer, 0, 0);
+            this.lblFPS.Invoke(action, fps);
 
         }
-        
 
-
-
-        private void Timer_Tick(object sender, EventArgs e)
+        private void Form1_FormClosing(object sender, FormClosingEventArgs e)
         {
-            Draw();
+            if (timer != null)
+            {
+                timer.Stop();
+                timer.Dispose();
+            }
         }
 
-
-        //protected override void OnPaint(PaintEventArgs e)
-        //{
-        //}
-
-        protected override void OnPaintBackground(PaintEventArgs e)
+        private void bar_Scroll(object sender, EventArgs e)
         {
+            rayRenderer.sphere.Radius = (float)bar.Value;
         }
     }
 }

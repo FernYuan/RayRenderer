@@ -53,13 +53,13 @@ namespace RayRenderer
         {
             this.right = Vector3.Cross(this.front,this.refUp);
             this.up = Vector3.Cross(this.right, this.front);
-            this.fovScale = (float)Math.Tan(this.fov * 0.5 * Math.PI / 180) * 2;
+            this.fovScale = (float)Math.Tan(this.fov * 0.5f * Math.PI / 180f) * 2f;
         }
 
         public Ray3 GenerateRay(float x, float y)
         {
-            Vector3 r = right * (float)((x - 0.5) * fovScale);
-            Vector3 u = up * (float)((y - 0.5) * fovScale);
+            Vector3 r = right * (float)((x - 0.5f) * fovScale);
+            Vector3 u = up * (float)((y - 0.5f) * fovScale);
             return new Ray3(this.Transform.position, (this.front + r + u).Normalize());
 
         }

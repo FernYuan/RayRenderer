@@ -24,7 +24,7 @@ namespace RayRenderer
             {
                 return radius;
             }
-            protected set
+             set
             {
                 radius = value;
                 sqrRadius = radius * radius;
@@ -61,7 +61,7 @@ namespace RayRenderer
         /// <returns></returns>
         public RaycastHit Intersect(Ray3 ray)
         {
-            RaycastHit hit = new RayRenderer.RaycastHit();
+            RaycastHit hit = new RaycastHit();
             Vector3 v = ray.Origin - this.Transform.position;
             float a0 = v.SqeLength - this.SqrRadius;
             float DdotV = Vector3.Dot(ray.Direction, v);
