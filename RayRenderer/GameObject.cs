@@ -27,6 +27,25 @@ namespace RayRenderer
                 return transform;
             }
         }
+     
+
+        /// <summary>
+        /// 光线追踪材质
+        /// </summary>
+        private RayMaterial rayMaterial;
+
+        public RayMaterial RayMaterial
+        {
+            get
+            {
+                return rayMaterial;
+            }
+
+            set
+            {
+                rayMaterial = value;
+            }
+        }
 
         public GameObject()
         {

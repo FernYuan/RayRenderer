@@ -32,8 +32,12 @@
             this.label1 = new System.Windows.Forms.Label();
             this.pic = new System.Windows.Forms.PictureBox();
             this.bar = new System.Windows.Forms.TrackBar();
+            this.barLight = new System.Windows.Forms.TrackBar();
+            this.colorDialog = new System.Windows.Forms.ColorDialog();
+            this.btnColor = new System.Windows.Forms.Button();
             ((System.ComponentModel.ISupportInitialize)(this.pic)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.bar)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.barLight)).BeginInit();
             this.SuspendLayout();
             // 
             // lblFPS
@@ -72,15 +76,39 @@
             this.bar.Maximum = 20;
             this.bar.Name = "bar";
             this.bar.Size = new System.Drawing.Size(201, 45);
+            this.bar.SmallChange = 0;
             this.bar.TabIndex = 4;
             this.bar.Value = 10;
             this.bar.Scroll += new System.EventHandler(this.bar_Scroll);
+            // 
+            // barLight
+            // 
+            this.barLight.Location = new System.Drawing.Point(512, 180);
+            this.barLight.Minimum = -10;
+            this.barLight.Name = "barLight";
+            this.barLight.Size = new System.Drawing.Size(201, 45);
+            this.barLight.SmallChange = 0;
+            this.barLight.TabIndex = 5;
+            this.barLight.Value = 10;
+            this.barLight.Scroll += new System.EventHandler(this.barLight_Scroll);
+            // 
+            // btnColor
+            // 
+            this.btnColor.Location = new System.Drawing.Point(572, 260);
+            this.btnColor.Name = "btnColor";
+            this.btnColor.Size = new System.Drawing.Size(75, 23);
+            this.btnColor.TabIndex = 6;
+            this.btnColor.Text = "修改颜色";
+            this.btnColor.UseVisualStyleBackColor = true;
+            this.btnColor.Click += new System.EventHandler(this.btnColor_Click);
             // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 12F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(755, 469);
+            this.Controls.Add(this.btnColor);
+            this.Controls.Add(this.barLight);
             this.Controls.Add(this.bar);
             this.Controls.Add(this.pic);
             this.Controls.Add(this.label1);
@@ -91,6 +119,7 @@
             this.Load += new System.EventHandler(this.Form1_Load);
             ((System.ComponentModel.ISupportInitialize)(this.pic)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.bar)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.barLight)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -102,6 +131,9 @@
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.PictureBox pic;
         private System.Windows.Forms.TrackBar bar;
+        private System.Windows.Forms.TrackBar barLight;
+        private System.Windows.Forms.ColorDialog colorDialog;
+        private System.Windows.Forms.Button btnColor;
     }
 }
 
