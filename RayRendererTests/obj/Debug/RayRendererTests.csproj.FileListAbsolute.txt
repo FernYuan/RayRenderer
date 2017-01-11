@@ -1,0 +1,9 @@
+F:\Work\Project\C#\Renderer\RayRenderer\RayRendererTests\bin\Debug\RayRendererTests.dll
+F:\Work\Project\C#\Renderer\RayRenderer\RayRendererTests\bin\Debug\RayRendererTests.pdb
+F:\Work\Project\C#\Renderer\RayRenderer\RayRendererTests\bin\Debug\Microsoft.VisualStudio.QualityTools.UnitTestFramework.dll
+F:\Work\Project\C#\Renderer\RayRenderer\RayRendererTests\bin\Debug\RayRenderer.exe
+F:\Work\Project\C#\Renderer\RayRenderer\RayRendererTests\bin\Debug\RayRenderer.pdb
+F:\Work\Project\C#\Renderer\RayRenderer\RayRendererTests\bin\Debug\zh-Hans\Microsoft.VisualStudio.QualityTools.UnitTestFramework.resources.dll
+F:\Work\Project\C#\Renderer\RayRenderer\RayRendererTests\obj\Debug\RayRendererTests.csprojResolveAssemblyReference.cache
+F:\Work\Project\C#\Renderer\RayRenderer\RayRendererTests\obj\Debug\RayRendererTests.dll
+F:\Work\Project\C#\Renderer\RayRenderer\RayRendererTests\obj\Debug\RayRendererTests.pdb

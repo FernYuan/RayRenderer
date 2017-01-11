@@ -29,7 +29,7 @@ namespace RayRenderer
         private void Form1_Load(object sender, EventArgs e)
         {
 
-            rayRenderer = new RayRenderer(new Camera(new Vector3(0, 10, 10), new Vector3(0, 0, -1), new Vector3(0, 1, 0), 90),
+            rayRenderer = new RayRenderer(new Camera(new Vector3(0, 5, 15), new Vector3(0, 0, -1), new Vector3(0, 1, 0), 90),
            new Bitmap(256, 256), this.pic.CreateGraphics(), 20);
             timer = new System.Timers.Timer();
             timer.Enabled = true;
@@ -56,6 +56,8 @@ namespace RayRenderer
             }
         }
 
+       
+
         /// <summary>
         /// 计时器
         /// </summary>
@@ -68,7 +70,12 @@ namespace RayRenderer
 
             sw.Restart();
 
-            rayRenderer.Rendering();
+             rayRenderer.Rendering();
+            //rayRenderer.ThreadRendering();
+            while (!rayRenderer.IsDown)
+            {
+                
+            }
 
 
             sw.Stop();
@@ -98,10 +105,7 @@ namespace RayRenderer
             }
         }
 
-        private void bar_Scroll(object sender, EventArgs e)
-        {
-            rayRenderer.sphere.Radius = (float)bar.Value;
-        }
+      
 
         private void barLight_Scroll(object sender, EventArgs e)
         {

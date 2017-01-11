@@ -14,8 +14,17 @@ namespace RayRenderer
         /// <summary>
         /// 位置
         /// </summary>
-        public Vector3 position;
+        public Vector3 position ;
 
-        
+        /// <summary>
+        /// 欧拉角
+        /// </summary>
+        public Vector3 eulerAngles;
+
+        public Transform()
+        {
+            position = new Vector3();
+            eulerAngles = new Vector3();
+        }
     }
 }
