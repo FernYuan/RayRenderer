@@ -31,12 +31,10 @@
             this.lblFPS = new System.Windows.Forms.Label();
             this.label1 = new System.Windows.Forms.Label();
             this.pic = new System.Windows.Forms.PictureBox();
-            this.bar = new System.Windows.Forms.TrackBar();
             this.barLight = new System.Windows.Forms.TrackBar();
             this.colorDialog = new System.Windows.Forms.ColorDialog();
             this.btnColor = new System.Windows.Forms.Button();
             ((System.ComponentModel.ISupportInitialize)(this.pic)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.bar)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.barLight)).BeginInit();
             this.SuspendLayout();
             // 
@@ -70,17 +68,6 @@
             this.pic.TabIndex = 3;
             this.pic.TabStop = false;
             // 
-            // bar
-            // 
-            this.bar.Location = new System.Drawing.Point(512, 129);
-            this.bar.Maximum = 20;
-            this.bar.Name = "bar";
-            this.bar.Size = new System.Drawing.Size(201, 45);
-            this.bar.SmallChange = 0;
-            this.bar.TabIndex = 4;
-            this.bar.Value = 10;
-            this.bar.Scroll += new System.EventHandler(this.bar_Scroll);
-            // 
             // barLight
             // 
             this.barLight.Location = new System.Drawing.Point(512, 180);
@@ -109,7 +96,6 @@
             this.ClientSize = new System.Drawing.Size(755, 469);
             this.Controls.Add(this.btnColor);
             this.Controls.Add(this.barLight);
-            this.Controls.Add(this.bar);
             this.Controls.Add(this.pic);
             this.Controls.Add(this.label1);
             this.Controls.Add(this.lblFPS);
@@ -118,7 +104,6 @@
             this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.Form1_FormClosing);
             this.Load += new System.EventHandler(this.Form1_Load);
             ((System.ComponentModel.ISupportInitialize)(this.pic)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.bar)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.barLight)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
@@ -130,7 +115,6 @@
         private System.Windows.Forms.Label lblFPS;
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.PictureBox pic;
-        private System.Windows.Forms.TrackBar bar;
         private System.Windows.Forms.TrackBar barLight;
         private System.Windows.Forms.ColorDialog colorDialog;
         private System.Windows.Forms.Button btnColor;

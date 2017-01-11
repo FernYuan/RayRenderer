@@ -7,24 +7,23 @@ using System.Threading.Tasks;
 namespace RayRenderer
 {
     /// <summary>
-    /// 变换
+    /// 平面
     /// </summary>
-    public class Transform 
+    class Plane : RayGameObject
     {
         /// <summary>
-        /// 位置
+        /// 法向量
         /// </summary>
-        public Vector3 position ;
+        private Vector3 normal;
 
         /// <summary>
-        /// 欧拉角
+        /// 相对原点的距离
         /// </summary>
-        public Vector3 eulerAngles;
-
-        public Transform()
+        private float distanceForOrigin;
+       
+        public override RaycastHit Intersect(Ray3 ray)
         {
-            position = new Vector3();
-            eulerAngles = new Vector3();
+            throw new NotImplementedException();
         }
     }
 }

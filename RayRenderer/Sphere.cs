@@ -9,7 +9,7 @@ namespace RayRenderer
     /// <summary>
     /// 球体
     /// </summary>
-    public class Sphere : GameObject
+    public class Sphere : RayGameObject
     {
         /// <summary>
         /// 半径
@@ -59,7 +59,7 @@ namespace RayRenderer
         /// </summary>
         /// <param name="ray"></param>
         /// <returns></returns>
-        public RaycastHit Intersect(Ray3 ray)
+        public override RaycastHit Intersect(Ray3 ray)
         {
             RaycastHit hit = new RaycastHit();
             Vector3 v = ray.Origin - this.Transform.position;

@@ -32,7 +32,12 @@ namespace RayRenderer
         /// </summary>
         private Graphics g;
 
-        public Sphere sphere = new Sphere(10);
+        /// <summary>
+        /// 要渲染的物体集合
+        /// </summary>
+        public UnionRayObject unionRayObject = new UnionRayObject();
+
+        
 
         public RayRenderer(Camera mCamera, Bitmap mBitmap, Graphics mGraphics, int mMaxDepth)
         {
@@ -42,9 +47,17 @@ namespace RayRenderer
             this.g = mGraphics;
             this.maxDepth = mMaxDepth;
 
-            sphere.Transform.position = new Vector3(0, 10, -10);
-            sphere.RayMaterial = new PhongMaterial(Color.blue, Color.white, 16, 0);
-           // sphere.RayMaterial = new CheckerMaterial(0.2f, 0.5f);
+            Sphere sphere = new Sphere(10);
+            sphere.Transform.position = new Vector3(-10, 10, -10);
+            sphere.RayMaterial = new PhongMaterial(Color.red, Color.white, 16, 0);
+
+            Sphere sphere1 = new Sphere(10);
+            sphere1.Transform.position = new Vector3(10, 10, -10);
+            sphere1.RayMaterial = new PhongMaterial(Color.blue, Color.white, 16, 0);
+
+            unionRayObject.Add(sphere);
+            unionRayObject.Add(sphere1);
+
         }
 
         /// <summary>
@@ -64,7 +77,7 @@ namespace RayRenderer
                 {
                     float sx = (float)x / (float)w;
                     Ray3 ray = camera.GenerateRay(sx, sy);
-                    RaycastHit hit = sphere.Intersect(ray);
+                    RaycastHit hit = unionRayObject.Intersect(ray);
                     if (hit.GameObject != null)
                     {
                         //Console.WriteLine("----射线命中"+hit.Position);
