@@ -16,10 +16,6 @@ namespace RayRenderer
         /// </summary>
         private Vector3 normal;
 
-        /// <summary>
-        /// 相对原点的距离
-        /// </summary>
-        private float distanceForOrigin;
        
         public override RaycastHit Intersect(Ray3 ray)
         {

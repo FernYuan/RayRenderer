@@ -63,6 +63,7 @@
     <Compile Include="Material.cs" />
     <Compile Include="Mathf.cs" />
     <Compile Include="PhongMaterial.cs" />
+    <Compile Include="Plane.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Ray3.cs" />
