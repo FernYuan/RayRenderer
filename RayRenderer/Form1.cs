@@ -70,15 +70,7 @@ namespace RayRenderer
 
             sw.Restart();
 
-             rayRenderer.Rendering();
-            //rayRenderer.ThreadRendering();
-            while (!rayRenderer.IsDown)
-            {
-                
-            }
-
-
-            sw.Stop();
+            rayRenderer.Rendering();
 
 
 
