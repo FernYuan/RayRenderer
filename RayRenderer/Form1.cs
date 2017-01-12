@@ -56,6 +56,8 @@ namespace RayRenderer
             }
         }
 
+       
+
         /// <summary>
         /// 计时器
         /// </summary>
@@ -68,7 +70,12 @@ namespace RayRenderer
 
             sw.Restart();
 
-            rayRenderer.Rendering();
+             rayRenderer.Rendering();
+            //rayRenderer.ThreadRendering();
+            while (!rayRenderer.IsDown)
+            {
+                
+            }
 
 
             sw.Stop();
