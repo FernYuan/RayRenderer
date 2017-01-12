@@ -23,10 +23,7 @@ namespace RayRenderer
         /// </summary>
         public float shininess;
 
-        /// <summary>
-        /// 反光度
-        /// </summary>
-        public float reflectiveness;
+     
 
         /// <summary>
         /// 全局光

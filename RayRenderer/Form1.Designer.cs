@@ -40,10 +40,11 @@
             // 
             // lblFPS
             // 
+            this.lblFPS.Anchor = System.Windows.Forms.AnchorStyles.Right;
             this.lblFPS.AutoSize = true;
             this.lblFPS.BackColor = System.Drawing.Color.Transparent;
             this.lblFPS.ForeColor = System.Drawing.SystemColors.MenuHighlight;
-            this.lblFPS.Location = new System.Drawing.Point(545, 22);
+            this.lblFPS.Location = new System.Drawing.Point(622, 23);
             this.lblFPS.Name = "lblFPS";
             this.lblFPS.Size = new System.Drawing.Size(11, 12);
             this.lblFPS.TabIndex = 0;
@@ -51,10 +52,11 @@
             // 
             // label1
             // 
+            this.label1.Anchor = System.Windows.Forms.AnchorStyles.Right;
             this.label1.AutoSize = true;
             this.label1.BackColor = System.Drawing.Color.Transparent;
             this.label1.ForeColor = System.Drawing.SystemColors.MenuHighlight;
-            this.label1.Location = new System.Drawing.Point(510, 22);
+            this.label1.Location = new System.Drawing.Point(587, 23);
             this.label1.Name = "label1";
             this.label1.Size = new System.Drawing.Size(29, 12);
             this.label1.TabIndex = 2;
@@ -62,15 +64,19 @@
             // 
             // pic
             // 
+            this.pic.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
             this.pic.Location = new System.Drawing.Point(1, 0);
             this.pic.Name = "pic";
-            this.pic.Size = new System.Drawing.Size(461, 457);
+            this.pic.Size = new System.Drawing.Size(426, 469);
             this.pic.TabIndex = 3;
             this.pic.TabStop = false;
             // 
             // barLight
             // 
-            this.barLight.Location = new System.Drawing.Point(512, 180);
+            this.barLight.Anchor = System.Windows.Forms.AnchorStyles.Right;
+            this.barLight.Location = new System.Drawing.Point(589, 181);
             this.barLight.Minimum = -10;
             this.barLight.Name = "barLight";
             this.barLight.Size = new System.Drawing.Size(201, 45);
@@ -81,7 +87,8 @@
             // 
             // btnColor
             // 
-            this.btnColor.Location = new System.Drawing.Point(572, 260);
+            this.btnColor.Anchor = System.Windows.Forms.AnchorStyles.Right;
+            this.btnColor.Location = new System.Drawing.Point(649, 261);
             this.btnColor.Name = "btnColor";
             this.btnColor.Size = new System.Drawing.Size(75, 23);
             this.btnColor.TabIndex = 6;
@@ -93,7 +100,7 @@
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 12F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(755, 469);
+            this.ClientSize = new System.Drawing.Size(832, 471);
             this.Controls.Add(this.btnColor);
             this.Controls.Add(this.barLight);
             this.Controls.Add(this.pic);

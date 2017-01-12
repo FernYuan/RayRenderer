@@ -30,7 +30,7 @@ namespace RayRenderer
         {
 
             rayRenderer = new RayRenderer(new Camera(new Vector3(0, 5, 15), new Vector3(0, 0, -1), new Vector3(0, 1, 0), 90),
-           new Bitmap(256, 256), this.pic.CreateGraphics(), 20);
+           new Bitmap(350, 350), this.pic.CreateGraphics(), 30,3);
             timer = new System.Timers.Timer();
             timer.Enabled = true;
             timer.Interval = 1000 / 60;
