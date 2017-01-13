@@ -21,6 +21,11 @@ namespace RayRenderer
         /// </summary>
         public Color color;
 
+        /// <summary>
+        /// 是否有阴影
+        /// </summary>
+        public bool isShadow = true;
+
         public Light()
         {
         }

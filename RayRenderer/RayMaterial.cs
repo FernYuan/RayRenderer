@@ -12,6 +12,12 @@ namespace RayRenderer
     public abstract class RayMaterial
     {
         /// <summary>
+        /// 反射度
+        /// </summary>
+        public float reflectiveness;
+
+
+        /// <summary>
         /// 采样
         /// </summary>
         /// <param name="ray"></param>

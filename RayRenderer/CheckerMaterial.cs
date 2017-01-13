@@ -16,10 +16,7 @@ namespace RayRenderer
         /// </summary>
         public float scale;
 
-        /// <summary>
-        /// 反光度
-        /// </summary>
-        public float reflectiveness;
+        
 
         public CheckerMaterial(float mScale, float mReflectiveness)
         {

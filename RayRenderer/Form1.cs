@@ -30,7 +30,7 @@ namespace RayRenderer
         {
 
             rayRenderer = new RayRenderer(new Camera(new Vector3(0, 5, 15), new Vector3(0, 0, -1), new Vector3(0, 1, 0), 90),
-           new Bitmap(256, 256), this.pic.CreateGraphics(), 20);
+           new Bitmap(256, 256), this.pic.CreateGraphics(), 30,3);
             timer = new System.Timers.Timer();
             timer.Enabled = true;
             timer.Interval = 1000 / 60;
@@ -102,6 +102,13 @@ namespace RayRenderer
         private void barLight_Scroll(object sender, EventArgs e)
         {
             PhongMaterial.light.direction = new Vector3(barLight.Value, 1, 1).Normalize();
+            if (rayRenderer.listRayLight.Count > 0)
+            {
+                foreach (RayLight item in rayRenderer.listRayLight)
+                {
+                    item.direction.x = barLight.Value;
+                }
+            }
         }
 
         private void btnColor_Click(object sender, EventArgs e)
