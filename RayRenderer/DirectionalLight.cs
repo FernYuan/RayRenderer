@@ -22,9 +22,14 @@ namespace RayRenderer
             }
         }
 
-        public DirectionalLight(Color mColor, Vector3 mDirection)
+        /// <summary>
+        /// 平行光
+        /// </summary>
+        /// <param name="mIntensity">辐照强度</param>
+        /// <param name="mDirection">方向</param>
+        public DirectionalLight(Color mIntensity, Vector3 mDirection)
         {
-            this.color = mColor;
+            this.color = mIntensity;
             this.direction = mDirection;
         }
 

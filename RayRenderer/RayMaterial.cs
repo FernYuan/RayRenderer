@@ -9,7 +9,7 @@ namespace RayRenderer
     /// <summary>
     /// 光线追踪材质
     /// </summary>
-    public abstract class RayMaterial
+    public abstract class RayMaterial : Material
     {
         /// <summary>
         /// 反射度

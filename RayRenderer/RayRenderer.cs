@@ -55,7 +55,15 @@ namespace RayRenderer
         /// </summary>
         public List<RayLight> listRayLight = new List<RayLight>();
 
+        /// <summary>
+        /// 渲染模式
+        /// </summary>
+        public RayRendererType rendererType;
 
+        /// <summary>
+        /// 光照模式
+        /// </summary>
+        public LightType lightType;
 
         public RayRenderer(Camera mCamera, Bitmap mBitmap, Graphics mGraphics, int mMaxDepth, int mMaxReflect)
         {
@@ -83,20 +91,44 @@ namespace RayRenderer
             unionRayObject.Add(sphere1);
             unionRayObject.Add(plane);
 
-            DirectionalLight dirLight = new DirectionalLight(Color.white, new Vector3(-1.75f, -2f, -1.5f));
+            dirLight = new DirectionalLight(Color.white, new Vector3(-1.75f, -2f, -1.5f));
+            pointLight = new PointLight(Color.white * 2000, new Vector3(30, 40, 20));
+            spotLight = new SpotLight(Color.white * 2000, new Vector3(0, 40, -10), new Vector3(0, -1, 0), 20, 50, 0.5f);
 
-            listRayLight.Add(dirLight);
-
+            //listRayLight.Add(dirLight);
+            //listRayLight.Add(pointLight);
+            //listRayLight.Add(spotLight);
         }
 
-
+       private DirectionalLight dirLight;
+       private PointLight pointLight;
+       private SpotLight spotLight;
 
         /// <summary>
         /// 渲染
         /// </summary>
         public void Rendering()
         {
-
+            listRayLight.Clear();
+            switch (lightType)
+            {
+                case LightType.DirectionalLight:
+                    {
+                        listRayLight.Add(dirLight);
+                    }
+                    break;
+                case LightType.PointLight:
+                    {
+                        listRayLight.Add(pointLight);
+                    }
+                    break;
+                case LightType.SpotLight:
+                    {
+                        listRayLight.Add(spotLight);
+                    }
+                    break;
+            }
+              
 
             int w = bitBuffer.Width;
             int h = bitBuffer.Height;
@@ -126,10 +158,31 @@ namespace RayRenderer
                             {
                                 //Console.WriteLine("----射线命中"+hit.Position);
 
-                                //RenderDepth(hit,ref pointRow);
-                                //RenderNormal(hit, ref pointRow);
-                                //RayTrace(ray, hit, ref pointRow);
-                                RenderLight(ray, hit, ref pointRow, listRayLight);
+                                switch (rendererType)
+                                {
+                                    case RayRendererType.RenderDepth:
+                                        {
+                                            RenderDepth(hit, ref pointRow);
+                                        }
+                                        break;
+                                    case RayRendererType.RenderNormal:
+                                        {
+                                            RenderNormal(hit, ref pointRow);
+                                        }
+                                        break;
+                                    case RayRendererType.RenderLight:
+                                        {
+                                            RenderLight(ray, hit, ref pointRow, listRayLight);
+                                           
+                                        }
+                                        break;
+                                    case RayRendererType.RenderPhong:
+                                        {
+                                            RayTrace(ray, hit, ref pointRow);
+                                        }
+                                        break;
+                                }
+                               
                             }
                             else
                             {

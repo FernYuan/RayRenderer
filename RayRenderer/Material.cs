@@ -6,6 +6,9 @@ using System.Threading.Tasks;
 
 namespace RayRenderer
 {
+    /// <summary>
+    /// 材质
+    /// </summary>
     public class Material
     {
         

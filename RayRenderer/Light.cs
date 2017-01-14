@@ -9,7 +9,7 @@ namespace RayRenderer
     /// <summary>
     /// 光照
     /// </summary>
-    public class Light
+    public class Light : GameObject
     {
         /// <summary>
         /// 方向
