@@ -48,8 +48,22 @@ namespace RayRenderer
         /// 要渲染的物体集合
         /// </summary>
         public UnionRayObject unionRayObject = new UnionRayObject();
+        
 
+        /// <summary>
+        /// 光照集合
+        /// </summary>
+        public List<RayLight> listRayLight = new List<RayLight>();
 
+        /// <summary>
+        /// 渲染模式
+        /// </summary>
+        public RayRendererType rendererType;
+
+        /// <summary>
+        /// 光照模式
+        /// </summary>
+        public LightType lightType;
 
         public RayRenderer(Camera mCamera, Bitmap mBitmap, Graphics mGraphics, int mMaxDepth, int mMaxReflect)
         {
@@ -60,6 +74,7 @@ namespace RayRenderer
             this.maxDepth = mMaxDepth;
             this.maxReflect = mMaxReflect;
 
+            //camera.Transform.position = new Vector3(0, 10, 10);
 
             Sphere sphere = new Sphere(10);
             sphere.Transform.position = new Vector3(-10, 10, -10);
@@ -75,16 +90,45 @@ namespace RayRenderer
             unionRayObject.Add(sphere);
             unionRayObject.Add(sphere1);
             unionRayObject.Add(plane);
+
+            dirLight = new DirectionalLight(Color.white, new Vector3(-1.75f, -2f, -1.5f));
+            pointLight = new PointLight(Color.white * 2000, new Vector3(30, 40, 20));
+            spotLight = new SpotLight(Color.white * 2000, new Vector3(0, 40, -10), new Vector3(0, -1, 0), 20, 50, 0.5f);
+
+            //listRayLight.Add(dirLight);
+            //listRayLight.Add(pointLight);
+            //listRayLight.Add(spotLight);
         }
 
-
+       private DirectionalLight dirLight;
+       private PointLight pointLight;
+       private SpotLight spotLight;
 
         /// <summary>
         /// 渲染
         /// </summary>
         public void Rendering()
         {
-
+            listRayLight.Clear();
+            switch (lightType)
+            {
+                case LightType.DirectionalLight:
+                    {
+                        listRayLight.Add(dirLight);
+                    }
+                    break;
+                case LightType.PointLight:
+                    {
+                        listRayLight.Add(pointLight);
+                    }
+                    break;
+                case LightType.SpotLight:
+                    {
+                        listRayLight.Add(spotLight);
+                    }
+                    break;
+            }
+              
 
             int w = bitBuffer.Width;
             int h = bitBuffer.Height;
@@ -114,9 +158,31 @@ namespace RayRenderer
                             {
                                 //Console.WriteLine("----射线命中"+hit.Position);
 
-                                //RenderDepth(hit,ref pointRow);
-                                //RenderNormal(hit, ref pointRow);
-                                RayTrace(ray, hit, ref pointRow);
+                                switch (rendererType)
+                                {
+                                    case RayRendererType.RenderDepth:
+                                        {
+                                            RenderDepth(hit, ref pointRow);
+                                        }
+                                        break;
+                                    case RayRendererType.RenderNormal:
+                                        {
+                                            RenderNormal(hit, ref pointRow);
+                                        }
+                                        break;
+                                    case RayRendererType.RenderLight:
+                                        {
+                                            RenderLight(ray, hit, ref pointRow, listRayLight);
+                                           
+                                        }
+                                        break;
+                                    case RayRendererType.RenderPhong:
+                                        {
+                                            RayTrace(ray, hit, ref pointRow);
+                                        }
+                                        break;
+                                }
+                               
                             }
                             else
                             {
@@ -187,6 +253,38 @@ namespace RayRenderer
             (*(point++)) = 255;//a
         }
 
+
+        /// <summary>
+        /// 渲染阴影
+        /// </summary>
+        /// <param name="ray"></param>
+        /// <param name="hit"></param>
+        /// <param name="point"></param>
+        /// <param name="lights"></param>
+        public unsafe void RenderLight(Ray3 ray, RaycastHit hit, ref byte* point, List<RayLight> lights)
+        {
+            Color color = Color.black;
+
+            foreach (RayLight item in lights)
+            {
+                LightSample lightSample = item.Sample(unionRayObject,hit.Position);
+                if (lightSample != LightSample.zero)
+                {
+                    float NdotL = Vector3.Dot(hit.Normal, lightSample.L);
+
+                    if (NdotL >= 0)
+                    {
+                        color = color + (lightSample.EL * NdotL);
+                    }
+                }
+            }
+
+            (*(point++)) = (byte)Mathf.Clamp((int)(color.b * 255), 0, 255);//b
+            (*(point++)) = (byte)Mathf.Clamp((int)(color.g * 255), 0, 255);//g
+            (*(point++)) = (byte)Mathf.Clamp((int)(color.r * 255), 0, 255);//r
+            (*(point++)) = 255;//a
+        }
+
         /// <summary>
         /// 光线追踪
         /// </summary>
@@ -248,6 +346,10 @@ namespace RayRenderer
             }
             return color;
         }
+
+       
+
+      
 
     }
 }

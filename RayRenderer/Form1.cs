@@ -30,7 +30,7 @@ namespace RayRenderer
         {
 
             rayRenderer = new RayRenderer(new Camera(new Vector3(0, 5, 15), new Vector3(0, 0, -1), new Vector3(0, 1, 0), 90),
-           new Bitmap(350, 350), this.pic.CreateGraphics(), 30,3);
+           new Bitmap(300, 300), this.pic.CreateGraphics(), 30,3);
             timer = new System.Timers.Timer();
             timer.Enabled = true;
             timer.Interval = 1000 / 60;
@@ -38,7 +38,9 @@ namespace RayRenderer
             timer.Elapsed += Timer_Elapsed;
             timer.Start();
 
-
+            cmbRendererMode.SelectedIndex = 0;
+            cmbRendererType.SelectedIndex = 0;
+            cmbLightType.SelectedIndex = 0;
         }
 
         private void OnFPSChange(float mFPS)
@@ -102,6 +104,20 @@ namespace RayRenderer
         private void barLight_Scroll(object sender, EventArgs e)
         {
             PhongMaterial.light.direction = new Vector3(barLight.Value, 1, 1).Normalize();
+            if (rayRenderer.listRayLight.Count > 0)
+            {
+                foreach (RayLight item in rayRenderer.listRayLight)
+                {
+                    if (rayRenderer.lightType == LightType.DirectionalLight)
+                    {
+                        item.direction.x = barLight.Value;
+                    }
+                    else
+                    {
+                        item.Transform.position.x = barLight.Value;
+                    }
+                }
+            }
         }
 
         private void btnColor_Click(object sender, EventArgs e)
@@ -110,6 +126,27 @@ namespace RayRenderer
             {
                 PhongMaterial.light.color = new Color(255f / (float)colorDialog.Color.R, 255f / (float)colorDialog.Color.G, 255f / (float)colorDialog.Color.B);
             }
+        }
+
+        private void cmbRendererMode_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            rayRenderer.rendererType = (RayRendererType)cmbRendererMode.SelectedIndex;
+
+            if (rayRenderer.rendererType == RayRendererType.RenderLight)
+            {
+                cmbLightType.Visible = true;
+                lblLightType.Visible = true;
+            }
+            else
+            {
+                cmbLightType.Visible = false;
+                lblLightType.Visible = false;
+            }
+        }
+
+        private void cmbLightType_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            rayRenderer.lightType = (LightType)cmbLightType.SelectedIndex;
         }
     }
 }

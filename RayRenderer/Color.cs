@@ -53,6 +53,23 @@ namespace RayRenderer
             return new Color(mColor.r * mF, mColor.g * mF, mColor.b * mF, mColor.a * mF);
         }
 
+        public static bool operator ==(Color lhs, Color rhs)
+        {
+            return (((lhs.r.Equals(rhs.r) && lhs.g.Equals(rhs.g)) && lhs.b.Equals(rhs.b)) && lhs.a.Equals(rhs.a));
+        }
+
+        public static bool operator !=(Color lhs, Color rhs)
+        {
+            return !(((lhs.r.Equals(rhs.r) && lhs.g.Equals(rhs.g)) && lhs.b.Equals(rhs.b)) && lhs.a.Equals(rhs.a));
+        }
+
+        public override string ToString()
+        {
+            return string.Format("Color(r:{0},g:{1},b:{2},a:{3})", r, g, b,a);
+        }
+
+
+
         public static Color black
         {
             get

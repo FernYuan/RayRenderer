@@ -105,6 +105,17 @@ namespace RayRenderer
             return mA * inv;
         }
 
+        public static bool operator ==(Vector3 lhs, Vector3 rhs)
+        {
+            return ((lhs - rhs).SqeLength < 9.999999E-11f);
+        }
+
+        public static bool operator !=(Vector3 lhs, Vector3 rhs)
+        {
+            return ((lhs - rhs).SqeLength >= 9.999999E-11f);
+        }
+
+
         /// <summary>
         /// 向量点积
         /// </summary>

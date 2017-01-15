@@ -9,7 +9,7 @@ namespace RayRenderer
     /// <summary>
     /// 光照
     /// </summary>
-    public class Light
+    public class Light : GameObject
     {
         /// <summary>
         /// 方向
@@ -20,6 +20,11 @@ namespace RayRenderer
         /// 颜色
         /// </summary>
         public Color color;
+
+        /// <summary>
+        /// 是否有阴影
+        /// </summary>
+        public bool isShadow = true;
 
         public Light()
         {
